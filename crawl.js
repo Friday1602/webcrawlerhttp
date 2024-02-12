@@ -1,4 +1,12 @@
-async function crawlPage(currentURL) {
+async function crawlPage(baseURL, currentURL, pages) {
+    
+    const baseURLObj = new URL(baseURL)
+    const currentURLObj = new URL(currentURL) 
+    if (baseURLObj.hostname !== currentURLObj.hostname) {
+        return pages
+    }
+
+
     try {
         const response = await fetch (currentURL)
         console.log(`actively crawling ${currentURL}`)
